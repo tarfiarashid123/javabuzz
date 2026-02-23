@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://tarfiarashid123.github.io/javabuzz/sitemap.xml
