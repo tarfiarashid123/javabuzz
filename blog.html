@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>Java Buzz Blog - Coffee Stories, Tips & News</title>
+    <meta name="description" content="Explore the Java Buzz blog for the latest coffee stories, brewing tips, health benefits, latte art tutorials, and coffee culture from around the world.">
+    <meta name="keywords" content="coffee blog, espresso tips, cold brew, latte art, coffee health benefits, coffee news, java buzz">
+    <meta name="author" content="Java Buzz Coffee">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Java Buzz Coffee Blog">
+    <meta property="og:description" content="Discover coffee stories, tips, and news from our experts.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to your main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Additional Blog Page Styles -->
+    <style>
+        /* Blog Page Specific Styles */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(26,18,11,0.9), rgba(26,18,11,0.9)), url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 4rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .page-header h1 span {
+            color: var(--light-brown);
+        }
+        
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .blog-section {
+            padding: 5rem 2rem;
+            background: var(--primary-dark);
+        }
+        
+        .blog-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .blog-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(166, 123, 91, 0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--light-brown);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .blog-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-image img {
+            transform: scale(1.1);
+        }
+        
+        .blog-category {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--light-brown);
+            color: var(--primary-dark);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .blog-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .blog-date {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .blog-date i {
+            color: var(--light-brown);
+        }
+        
+        .blog-read-time {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        
+        .blog-read-time i {
+            color: var(--light-brown);
+        }
+        
+        .blog-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+            line-height: 1.4;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .blog-excerpt {
+            color: var(--text-light);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+            flex: 1;
+        }
+        
+        .blog-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(166, 123, 91, 0.1);
+        }
+        
+        .blog-author {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        
+        .blog-author img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--light-brown);
+        }
+        
+        .blog-author-info {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-author-name {
+            color: var(--cream);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .blog-author-role {
+            color: var(--light-brown);
+            font-size: 0.75rem;
+        }
+        
+        .blog-stats {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .blog-stat {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+        
+        .blog-stat i {
+            color: var(--light-brown);
+        }
+        
+        .blog-share {
+            display: flex;
+            gap: 0.8rem;
+        }
+        
+        .blog-share a {
+            color: var(--text-light);
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+        
+        .blog-share a:hover {
+            color: var(--light-brown);
+            transform: translateY(-2px);
+        }
+        
+        .loading-spinner {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 3rem;
+            color: var(--cream);
+            font-size: 1.2rem;
+        }
+        
+        .loading-spinner i {
+            font-size: 2rem;
+            color: var(--light-brown);
+            animation: spin 1s linear infinite;
+            margin-bottom: 1rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .error-message {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 3rem;
+            color: #ff6b6b;
+            font-size: 1.2rem;
+        }
+        
+        .error-message i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .retry-btn {
+            background: var(--light-brown);
+            color: var(--primary-dark);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            font-weight: 600;
+            margin-top: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .retry-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(166, 123, 91, 0.3);
+        }
+        
+        .pagination {
+            max-width: 1400px;
+            margin: 3rem auto 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .page-btn {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(166, 123, 91, 0.3);
+            background: transparent;
+            color: var(--cream);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .page-btn:hover,
+        .page-btn.active {
+            background: var(--light-brown);
+            color: var(--primary-dark);
+            border-color: var(--light-brown);
+        }
+        
+        .load-more {
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .load-more-btn {
+            background: transparent;
+            border: 2px solid var(--light-brown);
+            color: var(--cream);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .load-more-btn:hover {
+            background: var(--light-brown);
+            color: var(--primary-dark);
+        }
+        
+        .load-more-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .load-more-btn i {
+            transition: transform 0.3s ease;
+        }
+        
+        .load-more-btn:hover i {
+            transform: translateY(3px);
+        }
+        
+        @media (max-width: 1200px) {
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .blog-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (same as home page) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-mug-hot"></i>
+                <a href="index.html">Java<span>Buzz</span></a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="index.html#location">Location</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our <span>Blog</span></h1>
+        <p>Stories, tips, and news from the world of coffee</p>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog-section">
+        <div class="blog-grid" id="blogGrid">
+            <div class="loading-spinner">
+                <i class="fas fa-circle-notch"></i>
+                <p>Loading amazing coffee stories...</p>
+            </div>
+        </div>
+        
+        <div class="load-more">
+            <button class="load-more-btn" id="loadMoreBtn" style="display: none;">
+                <span>Load More</span>
+                <i class="fas fa-arrow-down"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer (same as home page) -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <div class="footer-logo">
+                    <i class="fas fa-mug-hot"></i>
+                    <h3>Java<span>Buzz</span></h3>
+                </div>
+                <p>Your perfect cup of coffee awaits. Experience the finest coffee in town with our premium blends and cozy atmosphere.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="menu.html">Menu</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Categories</h4>
+                <ul>
+                    <li><a href="menu.html?cat=espresso">Espresso</a></li>
+                    <li><a href="menu.html?cat=milk">Milk Coffee</a></li>
+                    <li><a href="menu.html?cat=cold">Cold Coffee</a></li>
+                    <li><a href="menu.html?cat=special">Special</a></li>
+                    <li><a href="menu.html?cat=pastry">Pastries</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Newsletter</h4>
+                <p>Subscribe for exclusive offers!</p>
+                <form class="footer-newsletter" id="footerNewsletter">
+                    <input type="email" placeholder="Your Email">
+                    <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                </form>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Java Buzz Coffee Shop. All rights reserved. | Made with <i class="fas fa-heart"></i> in Lahore</p>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar (same as home page) -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cartItems"></div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount" id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <span>Checkout</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Scripts -->
+    <script>
+        // ===== GLOBAL VARIABLES =====
+        let blogPosts = []; // Will store data from JSON
+        let displayedBlogs = 6; // Number of blogs to show initially
+        let isLoading = false;
+
+        // ===== FETCH BLOGS FROM JSON FILE =====
+        async function fetchBlogs() {
+            const blogGrid = document.getElementById('blogGrid');
+            
+            try {
+                // Show loading spinner
+                blogGrid.innerHTML = `
+                    <div class="loading-spinner">
+                        <i class="fas fa-circle-notch"></i>
+                        <p>Loading amazing coffee stories...</p>
+                    </div>
+                `;
+                
+                // Fetch the JSON file
+                const response = await fetch('blog.json');
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                // Check if data has blogs array
+                if (data && data.blogs && Array.isArray(data.blogs)) {
+                    blogPosts = data.blogs;
+                    displayBlogs();
+                } else {
+                    throw new Error('Invalid JSON format: blogs array not found');
+                }
+                
+            } catch (error) {
+                console.error('Error fetching blogs:', error);
+                
+                // Show error message with retry option
+                blogGrid.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Failed to load blog posts. Please try again.</p>
+                        <button class="retry-btn" onclick="fetchBlogs()">
+                            <i class="fas fa-redo-alt"></i> Retry
+                        </button>
+                    </div>
+                `;
+                
+                showToast('Error loading blogs. Please refresh the page.');
+            }
+        }
+
+        // ===== DISPLAY BLOGS =====
+        function displayBlogs() {
+            const blogGrid = document.getElementById('blogGrid');
+            if (!blogGrid) return;
+            
+            const blogsToShow = blogPosts.slice(0, displayedBlogs);
+            
+            if (blogsToShow.length === 0) {
+                blogGrid.innerHTML = `
+                    <div class="error-message">
+                        <i class="fas fa-info-circle"></i>
+                        <p>No blog posts available.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            blogGrid.innerHTML = blogsToShow.map(post => `
+                <div class="blog-card">
+                    <div class="blog-image">
+                        <img src="${post.image}" alt="${post.title}" loading="lazy">
+                        <span class="blog-category">${post.category}</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">
+                                <i class="far fa-calendar-alt"></i>
+                                ${formatDate(post.date)}
+                            </span>
+                            <span class="blog-read-time">
+                                <i class="far fa-clock"></i>
+                                ${post.readTime}
+                            </span>
+                        </div>
+                        <h3 class="blog-title">${post.title}</h3>
+                        <p class="blog-excerpt">${post.excerpt}</p>
+                        <div class="blog-footer">
+                            <div class="blog-author">
+                                <img src="${post.authorImage}" alt="${post.author}" loading="lazy">
+                                <div class="blog-author-info">
+                                    <span class="blog-author-name">${post.author}</span>
+                                    <span class="blog-author-role">Barista</span>
+                                </div>
+                            </div>
+                            <div class="blog-stats">
+                                <span class="blog-stat">
+                                    <i class="far fa-comment"></i>
+                                    ${post.comments}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="blog-share" style="margin-top: 1rem; justify-content: flex-end;">
+                            <a href="#" onclick="shareBlog(${post.id}, 'facebook'); return false;">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="#" onclick="shareBlog(${post.id}, 'twitter'); return false;">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="#" onclick="shareBlog(${post.id}, 'pinterest'); return false;">
+                                <i class="fab fa-pinterest"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update load more button visibility
+            updateLoadMoreButton();
+        }
+
+        // ===== FORMAT DATE =====
+        function formatDate(dateString) {
+            const options = { month: 'short', day: 'numeric', year: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        // ===== UPDATE LOAD MORE BUTTON =====
+        function updateLoadMoreButton() {
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            if (!loadMoreBtn) return;
+            
+            if (displayedBlogs >= blogPosts.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'inline-flex';
+            }
+        }
+
+        // ===== LOAD MORE BLOGS =====
+        function loadMoreBlogs() {
+            if (isLoading) return;
+            
+            isLoading = true;
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            
+            // Show loading state
+            loadMoreBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Loading...';
+            loadMoreBtn.disabled = true;
+            
+            // Simulate loading delay (remove in production)
+            setTimeout(() => {
+                displayedBlogs += 3; // Load 3 more blogs
+                displayBlogs();
+                
+                // Reset button
+                loadMoreBtn.innerHTML = '<span>Load More</span> <i class="fas fa-arrow-down"></i>';
+                loadMoreBtn.disabled = false;
+                isLoading = false;
+                
+                // Scroll smoothly to new content
+                const blogGrid = document.getElementById('blogGrid');
+                const lastCard = blogGrid.lastElementChild;
+                if (lastCard) {
+                    lastCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, 500);
+        }
+
+        // ===== SHARE BLOG =====
+        function shareBlog(postId, platform) {
+            const post = blogPosts.find(p => p.id === postId);
+            if (!post) return;
+            
+            const url = encodeURIComponent(window.location.href);
+            const title = encodeURIComponent(post.title);
+            
+            let shareUrl = '';
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${title}&url=${url}`;
+                    break;
+                case 'pinterest':
+                    shareUrl = `https://pinterest.com/pin/create/button/?url=${url}&media=${encodeURIComponent(post.image)}&description=${title}`;
+                    break;
+            }
+            
+            window.open(shareUrl, '_blank', 'width=600,height=400,noopener,noreferrer');
+            showToast('Opening share dialog...');
+        }
+
+        // ===== TOAST NOTIFICATION =====
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            if (!toast) return;
+            
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // ===== INITIALIZATION =====
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fetch blogs from JSON
+            fetchBlogs();
+            
+            // Load more button event listener
+            document.getElementById('loadMoreBtn')?.addEventListener('click', loadMoreBlogs);
+            
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+            
+            // Mobile menu
+            const hamburger = document.querySelector('.hamburger');
+            const navMenu = document.querySelector('.nav-menu');
+            
+            if (hamburger) {
+                hamburger.addEventListener('click', () => {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Close menu on link click
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                });
+            });
+            
+            // Load cart if function exists
+            if (typeof loadCart === 'function') {
+                loadCart();
+            }
+            
+            // Footer newsletter
+            document.getElementById('footerNewsletter')?.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('input').value;
+                if (email) {
+                    showToast(`Thanks for subscribing with ${email}!`);
+                    e.target.reset();
+                }
+            });
+        });
+
+        // ===== ERROR HANDLING FOR IMAGES =====
+        document.addEventListener('error', function(e) {
+            if (e.target.tagName === 'IMG') {
+                e.target.src = 'https://via.placeholder.com/500x300?text=Image+Not+Available';
+            }
+        }, true);
+    </script>
+    
+    <!-- Link to main script.js for cart functionality -->
+    <script src="script.js"></script>
+</body>
+</html>

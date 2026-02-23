@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>About Us - Java Buzz | Our Story & Coffee Passion</title>
+    <meta name="description" content="Learn about Java Buzz coffee shop's story, our passion for quality coffee, and our commitment to customer satisfaction since 2010.">
+    <meta name="keywords" content="about java buzz, coffee shop story, our mission, coffee passion, barista team">
+    <meta name="author" content="Java Buzz Coffee">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="About Java Buzz - Our Story">
+    <meta property="og:description" content="Discover the passion behind Java Buzz coffee since 2010.">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1442512595331-e89e73853f31">
+    
+    <!-- Fonts & Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Link to your main stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* About Page Specific Styles */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(rgba(26,18,11,0.9), rgba(26,18,11,0.9)), url('https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .page-header h1 {
+            font-size: 4rem;
+            color: var(--cream);
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .page-header h1 span {
+            color: var(--light-brown);
+        }
+        
+        .page-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .about-story {
+            padding: 5rem 2rem;
+            background: var(--primary-dark);
+        }
+        
+        .story-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .story-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .story-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        
+        .story-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .story-image .year-badge {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            background: var(--light-brown);
+            color: var(--primary-dark);
+            padding: 1.5rem;
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.8rem;
+            border: 3px solid var(--cream);
+            box-shadow: var(--shadow-md);
+            animation: pulse 2s infinite;
+        }
+        
+        .story-image .year-badge span {
+            font-size: 0.9rem;
+            margin-top: 0.2rem;
+        }
+        
+        .story-content h2 {
+            font-size: 2.5rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .story-content h2 span {
+            color: var(--light-brown);
+        }
+        
+        .story-content p {
+            color: var(--text-light);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .signature-quote {
+            border-left: 4px solid var(--light-brown);
+            padding-left: 2rem;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--cream);
+        }
+        
+        .signature-quote i {
+            color: var(--light-brown);
+            margin-right: 0.5rem;
+        }
+        
+        .mission-vision {
+            padding: 5rem 2rem;
+            background: var(--primary-brown);
+        }
+        
+        .mv-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .mv-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(166, 123, 91, 0.2);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--light-brown);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(166, 123, 91, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--light-brown);
+            transition: all 0.3s ease;
+        }
+        
+        .mv-card:hover .mv-icon {
+            background: var(--light-brown);
+            color: var(--primary-dark);
+            transform: rotateY(360deg);
+        }
+        
+        .mv-card h3 {
+            color: var(--cream);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .mv-card p {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+        
+        .values-section {
+            padding: 5rem 2rem;
+            background: var(--primary-dark);
+        }
+        
+        .values-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 15px;
+            border: 1px solid rgba(166, 123, 91, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .value-card:hover {
+            border-color: var(--light-brown);
+            transform: translateY(-5px);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--light-brown);
+            margin-bottom: 1rem;
+        }
+        
+        .value-card h4 {
+            color: var(--cream);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .value-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+        
+        .team-section {
+            padding: 5rem 2rem;
+            background: var(--primary-brown);
+        }
+        
+        .team-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+        }
+        
+        .team-card {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(166, 123, 91, 0.1);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--light-brown);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .team-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .team-card:hover .team-image img {
+            transform: scale(1.1);
+        }
+        
+        .team-info {
+            padding: 1.5rem;
+        }
+        
+        .team-info h3 {
+            color: var(--cream);
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+        
+        .team-info .role {
+            color: var(--light-brown);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .team-info p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .team-social a {
+            color: var(--text-light);
+            transition: all 0.3s ease;
+        }
+        
+        .team-social a:hover {
+            color: var(--light-brown);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 1200px) {
+            .mv-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .story-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mv-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .page-header h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar (same as home page) -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-mug-hot"></i>
+                <a href="index.html">Java<span>Buzz</span></a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="menu.html">Menu</a></li>
+                <li><a href="about.html"  class="active">About</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="index.html#location">Location</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+
+            <div class="nav-icons">
+                <a href="#" class="cart-icon" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-count" id="cartCount">0</span>
+                </a>
+            </div>
+
+            <div class="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <h1>Our <span>Story</span></h1>
+        <p>From a small dream to your favorite coffee spot - discover the journey of Java Buzz</p>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="about-story">
+        <div class="story-container">
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Java Buzz Coffee Shop">
+                <div class="year-badge">
+                    2010
+                    <span>EST.</span>
+                </div>
+            </div>
+            <div class="story-content">
+                <h2>Where It All <span>Began</span></h2>
+                <p>In 2010, two coffee enthusiasts turned their passion into reality. What started as a small coffee cart at a local market has now grown into Lahore's most beloved coffee destination - Java Buzz.</p>
+                <p>Our journey began with a simple belief: that great coffee has the power to bring people together, create conversations, and make ordinary moments extraordinary. We traveled across Colombia, Ethiopia, and Brazil to understand the art of coffee making and to source the finest beans.</p>
+                <div class="signature-quote">
+                    <i class="fas fa-quote-left"></i> Coffee is not just a drink; it's an experience, a moment of peace in a busy world, and a reason to smile.
+                </div>
+                <p>Today, Java Buzz stands as a testament to that belief - a warm, inviting space where every cup tells a story and every visitor becomes family.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mission-vision">
+        <div class="section-header">
+            <span class="section-subtitle">What Drives Us</span>
+            <h2 class="section-title">Our <span>Mission & Vision</span></h2>
+            <p class="section-description">The principles that guide every cup we serve</p>
+        </div>
+
+        <div class="mv-container">
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Our Mission</h3>
+                <p>To serve exceptional coffee that delights our customers while creating a warm, welcoming community space where everyone feels at home.</p>
+            </div>
+
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Our Vision</h3>
+                <p>To become Lahore's most loved coffee house, known for quality, consistency, and genuine hospitality across all our locations.</p>
+            </div>
+
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Our Promise</h3>
+                <p>Every cup is made with love, using ethically sourced beans and prepared with skill by our passionate baristas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values Section -->
+    <section class="values-section">
+        <div class="section-header">
+            <span class="section-subtitle">Our Core</span>
+            <h2 class="section-title">The Values We <span>Live By</span></h2>
+            <p class="section-description">These principles shape everything we do at Java Buzz</p>
+        </div>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h4>Quality First</h4>
+                <p>We never compromise on bean quality, roasting standards, or brewing techniques.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-hand-holding-heart"></i>
+                </div>
+                <h4>Customer Love</h4>
+                <p>Every visitor is treated like family, with genuine warmth and care.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <h4>Sustainability</h4>
+                <p>We're committed to eco-friendly practices and ethical sourcing.</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h4>Community</h4>
+                <p>Building connections and supporting local initiatives is at our heart.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="section-header">
+            <span class="section-subtitle">Our Team</span>
+            <h2 class="section-title">Meet The <span>Masters</span></h2>
+            <p class="section-description">The passionate people behind your perfect cup</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="John Smith">
+                </div>
+                <div class="team-info">
+                    <h3>John Smith</h3>
+                    <p class="role">Founder & Master Roaster</p>
+                    <p>15 years of roasting experience, traveled to 12 coffee farms worldwide.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1494790108777-466d829a1f8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Emma Watson">
+                </div>
+                <div class="team-info">
+                    <h3>Emma Watson</h3>
+                    <p class="role">Head Barista</p>
+                    <p>Latte art champion 2023, expert in brewing techniques.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mike Johnson">
+                </div>
+                <div class="team-info">
+                    <h3>Mike Johnson</h3>
+                    <p class="role">Coffee Sourcing Expert</p>
+                    <p>Travels the world to find the finest coffee beans.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="team-card">
+                <div class="team-image">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sarah Chen">
+                </div>
+                <div class="team-info">
+                    <h3>Sarah Chen</h3>
+                    <p class="role">Store Manager</p>
+                    <p>Ensures every visit is a delightful experience.</p>
+                    <div class="team-social">
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as home page) -->
+    <footer class="footer">
+
+    </footer>
+
+    <!-- Cart Sidebar (same as home page) -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Your Order</h3>
+            <button class="close-cart" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-items" id="cartItems"></div>
+        
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="total-amount" id="cartTotal">$0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">
+                <span>Checkout</span>
+                <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    <script src="footer.js"></script>
+    <script src="navbar.js"></script>
+</body>
+</html>
